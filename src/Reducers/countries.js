@@ -4,7 +4,7 @@ const countries = (state = init, action) => {
   switch (action.type) {
     case "SET_COUNTRIES":
       const item = {
-        country: action.payload.country,
+        name: action.payload.country,
         lan: action.payload.countryInfo.lat,
         lon: action.payload.countryInfo.long,
         flag: action.payload.countryInfo.flag,
@@ -15,7 +15,6 @@ const countries = (state = init, action) => {
         deaths: action.payload.deaths,
         newDeaths: action.payload.todayDeaths,
       };
-      console.log(item);
       return [...state, item];
 
     default:
