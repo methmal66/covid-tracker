@@ -12,17 +12,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   select: {
-    marginLeft: "750px",
+    marginLeft: "321px",
     width: "250px",
-  },
-  space: {
-    width: "0px",
   },
 }));
 
 const Header = () => {
   const classes = useStyles();
-  const [choosenCountry, setChoosenCountry] = useState("WorldWide");
+  const [choosenCountry, setChoosenCountry] = useState("World Wide");
 
   const MenuItemElements = () => {
     const countryNames = useSelector((state) => {
@@ -42,7 +39,7 @@ const Header = () => {
 
   return (
     <div className={classes.root}>
-      <h1>COVID-19 TRACKER</h1>
+      <h2>COVID-19 TRACKER</h2>
       <FormControl className={classes.select}>
         <Select
           variant="outlined"
@@ -52,7 +49,6 @@ const Header = () => {
           {MenuItemElements()}
         </Select>
       </FormControl>
-      <div className={classes.space}></div>
     </div>
   );
 };

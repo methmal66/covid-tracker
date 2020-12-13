@@ -3,12 +3,16 @@ import { useDispatch } from "react-redux";
 import { setCountries } from "./Actions/countries";
 import { setGlobal } from "./Actions/global";
 import Header from "./Components/Header";
+import SimpleCardList from "./Components/SimpleCardList";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "column",
+  },
+  body: {
+    maxWidth: "800px",
   },
 }));
 
@@ -35,7 +39,10 @@ const App = () => {
 
   return (
     <div className={classes.root}>
-      <Header />
+      <div className={classes.body}>
+        <Header />
+        <SimpleCardList />
+      </div>
     </div>
   );
 };
