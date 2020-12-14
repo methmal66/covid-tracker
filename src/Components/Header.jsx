@@ -1,24 +1,11 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: "20px",
-    display: "flex",
-    alignItems: "center",
-  },
-  select: {
-    marginLeft: "321px",
-    width: "250px",
-  },
-}));
+import Grid from "@material-ui/core/Grid";
 
 const Header = () => {
-  const classes = useStyles();
   const [choosenCountry, setChoosenCountry] = useState("World Wide");
 
   const MenuItemElements = () => {
@@ -38,18 +25,22 @@ const Header = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <h2>COVID-19 TRACKER</h2>
-      <FormControl className={classes.select}>
-        <Select
-          variant="outlined"
-          value={choosenCountry}
-          onChange={(event) => setChoosenCountry(event.target.value)}
-        >
-          {MenuItemElements()}
-        </Select>
-      </FormControl>
-    </div>
+    <Fragment>
+      <Grid item xs={8}>
+        <h2>COVID-19 TRACKER</h2>
+      </Grid>
+      <Grid item xs={4}>
+        <FormControl>
+          <Select
+            variant="outlined"
+            value={choosenCountry}
+            onChange={(event) => setChoosenCountry(event.target.value)}
+          >
+            {MenuItemElements()}
+          </Select>
+        </FormControl>
+      </Grid>
+    </Fragment>
   );
 };
 export default Header;

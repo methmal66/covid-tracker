@@ -1,18 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import SimpleCard from "./SimpleCard";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: "20px",
-    display: "flex",
-    justifyContent: "space-between",
-  },
-}));
+import Grid from "@material-ui/core/Grid";
 
 const SimpleCardList = () => {
-  const classes = useStyles();
   const {
     cases,
     newCases,
@@ -32,23 +23,29 @@ const SimpleCardList = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <SimpleCard
-        title="Covid virus cases"
-        _new={formatNumber(newCases)}
-        total={formatNumber(cases)}
-      />
-      <SimpleCard
-        title="Recovered"
-        _new={formatNumber(newRecovered)}
-        total={formatNumber(recovered)}
-      />
-      <SimpleCard
-        title="Deaths"
-        _new={formatNumber(newDeaths)}
-        total={formatNumber(deaths)}
-      />
-    </div>
+    <Grid container item spacing={2}>
+      <Grid item xs>
+        <SimpleCard
+          title="Covid virus cases"
+          _new={formatNumber(newCases)}
+          total={formatNumber(cases)}
+        />
+      </Grid>
+      <Grid item xs>
+        <SimpleCard
+          title="Recovered"
+          _new={formatNumber(newRecovered)}
+          total={formatNumber(recovered)}
+        />
+      </Grid>
+      <Grid item xs>
+        <SimpleCard
+          title="Deaths"
+          _new={formatNumber(newDeaths)}
+          total={formatNumber(deaths)}
+        />
+      </Grid>
+    </Grid>
   );
 };
 

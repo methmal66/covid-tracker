@@ -5,9 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
-  root: {
-    minWidth: 200,
-  },
+  root: {},
 });
 
 const SimpleCard = ({ title, _new, total }) => {
