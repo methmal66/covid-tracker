@@ -22,19 +22,15 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState();
 
   useEffect(() => {
-    setLoading(true);
-
     fetch("http://www.disease.sh/v3/covid-19/countries")
       .then((response) => response.json())
-      .then((data) => data.forEach((each) => dispatch(setCountries(each))));
+      .then((data) => dispatch(setCountries(data)));
 
     fetch("http://www.disease.sh/v3/covid-19/all")
       .then((response) => response.json())
       .then((data) => dispatch(setGlobal(data)));
-    setLoading(false);
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-export const setCountries = (item) => ({
+export const setCountries = (data) => ({
   type: "SET_COUNTRIES",
-  payload: item,
+  payload: data,
 });
