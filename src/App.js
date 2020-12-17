@@ -8,6 +8,7 @@ import Map from "./Components/Map";
 import Summary from "./Components/Summary";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import "./Components/spinner.gif";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,17 +26,14 @@ const App = () => {
 
   useEffect(() => {
     setLoading(true);
-    const fetchData = async () => {
-      let res = await fetch("http://www.disease.sh/v3/covid-19/countries");
-      let data = await res.json();
-      data.forEach((each) => dispatch(setCountries(each)));
 
-      res = await fetch("http://www.disease.sh/v3/covid-19/all");
-      data = await res.json();
-      dispatch(setGlobal(data));
-    };
+    fetch("http://www.disease.sh/v3/covid-19/countries")
+      .then((response) => response.json())
+      .then((data) => data.forEach((each) => dispatch(setCountries(each))));
 
-    fetchData();
+    fetch("http://www.disease.sh/v3/covid-19/all")
+      .then((response) => response.json())
+      .then((data) => dispatch(setGlobal(data)));
     setLoading(false);
   }, []);
 

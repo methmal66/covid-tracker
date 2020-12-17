@@ -11,39 +11,26 @@ const SimpleCardList = () => {
     newRecovered,
     deaths,
     newDeaths,
-  } = useSelector((state) => state.global);
-
-  const formatNumber = (num = 0) => {
-    const stringNumber = num.toString();
-    const formattedNumber = stringNumber.replace(
-      /(\d)(?=(\d{3})+(?!\d))/g,
-      "$1,"
-    );
-    return formattedNumber;
-  };
+  } = useSelector((state) => {
+    if (state.choosenCountry === "World Wide") {
+      return state.global;
+    }
+    const requiredCountry = state.countries.filter(
+      (eachCountry) => eachCountry.name === state.choosenCountry
+    )[0];
+    return requiredCountry;
+  });
 
   return (
     <Grid container item spacing={2}>
       <Grid item xs>
-        <SimpleCard
-          title="Covid virus cases"
-          _new={formatNumber(newCases)}
-          total={formatNumber(cases)}
-        />
+        <SimpleCard title="Covid virus cases" _new={newCases} total={cases} />
       </Grid>
       <Grid item xs>
-        <SimpleCard
-          title="Recovered"
-          _new={formatNumber(newRecovered)}
-          total={formatNumber(recovered)}
-        />
+        <SimpleCard title="Recovered" _new={newRecovered} total={recovered} />
       </Grid>
       <Grid item xs>
-        <SimpleCard
-          title="Deaths"
-          _new={formatNumber(newDeaths)}
-          total={formatNumber(deaths)}
-        />
+        <SimpleCard title="Deaths" _new={newDeaths} total={deaths} />
       </Grid>
     </Grid>
   );

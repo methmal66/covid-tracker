@@ -1,6 +1,4 @@
-export const setCountries = (item) => {
-  return {
-    type: "SET_COUNTRIES",
-    payload: item,
-  };
-};
+export const setCountries = (item) => ({
+  type: "SET_COUNTRIES",
+  payload: item,
+});

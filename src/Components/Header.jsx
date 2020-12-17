@@ -1,12 +1,14 @@
-import React, { Fragment, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setChoosenCountry } from "../Actions/choosenCountry";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
 
 const Header = () => {
-  const [choosenCountry, setChoosenCountry] = useState("World Wide");
+  const dispatch = useDispatch();
+  const { choosenCountry } = useSelector((state) => state);
 
   const MenuItemElements = () => {
     const countryNames = useSelector((state) => {
@@ -34,7 +36,9 @@ const Header = () => {
           <Select
             variant="outlined"
             value={choosenCountry}
-            onChange={(event) => setChoosenCountry(event.target.value)}
+            onChange={(event) =>
+              dispatch(setChoosenCountry(event.target.value))
+            }
           >
             {MenuItemElements()}
           </Select>
