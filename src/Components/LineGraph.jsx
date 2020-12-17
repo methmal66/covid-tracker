@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import { formatPoints } from "../util";
+import { formatPoints, formatPercentage } from "../util";
 import numeral from "numeral";
 
 const LineGraph = () => {
@@ -36,8 +36,7 @@ const LineGraph = () => {
       mode: "index",
       intersect: false,
       callbacks: {
-        label: (tooltipItem, data) =>
-          numeral(tooltipItem.value).format("0a").concat("%"),
+        label: (tooltipItem) => formatPercentage(tooltipItem.value),
       },
     },
     scales: {
@@ -57,8 +56,7 @@ const LineGraph = () => {
           },
           ticks: {
             // Include a dollar sign in the ticks
-            callback: (value, index, values) =>
-              numeral(value).format("0a").concat("%"),
+            callback: (value) => formatPercentage(value),
           },
         },
       ],
@@ -68,10 +66,7 @@ const LineGraph = () => {
   useEffect(() => {
     fetch("https://www.disease.sh/v3/covid-19/historical/all?lastdays=100")
       .then((response) => response.json())
-      .then((data) => {
-        const _cases = data.cases;
-        setPoints(formatPoints(_cases));
-      });
+      .then((data) => setPoints(formatPoints(data.cases)));
   }, []);
 
   return (

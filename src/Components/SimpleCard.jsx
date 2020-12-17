@@ -2,7 +2,7 @@ import React from "react";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import { formatNumber } from "../util";
+import { formatNumber, formatNewNumber } from "../util";
 
 const SimpleCard = ({ title, _new, total }) => {
   return (
@@ -10,7 +10,7 @@ const SimpleCard = ({ title, _new, total }) => {
       <Card>
         <CardContent>
           <Typography>{title}</Typography>
-          <Typography variant="h5">+{formatNumber(_new)} today</Typography>
+          <Typography variant="h5">{formatNewNumber(_new)} today</Typography>
           <Typography>{formatNumber(total)} total</Typography>
         </CardContent>
       </Card>
