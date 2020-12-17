@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     height: "638px",
   },
   table: {
-    height: "350px",
+    height: "380px",
     overflow: "scroll",
   },
   row: {
