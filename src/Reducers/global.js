@@ -3,6 +3,7 @@ const init = {};
 const global = (state = init, action) => {
   switch (action.type) {
     case "SET_GLOBAL":
+      console.log("global is set");
       return {
         cases: action.payload.cases,
         newCases: action.payload.todayCases,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCountries } from "./Actions/countries";
 import { setGlobal } from "./Actions/global";
@@ -24,6 +24,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("App mounted");
     fetch("http://www.disease.sh/v3/covid-19/countries")
       .then((response) => response.json())
       .then((data) => dispatch(setCountries(data)));
@@ -31,20 +32,21 @@ const App = () => {
     fetch("http://www.disease.sh/v3/covid-19/all")
       .then((response) => response.json())
       .then((data) => dispatch(setGlobal(data)));
+    //eslint-disable-next-line
   }, []);
 
   return (
     <center>
       <Grid container spacing={2} className={classes.root}>
-        <Grid container item xs={8} className={classes.header}>
+        <Grid container item md={8} className={classes.header}>
           <Header />
         </Grid>
-        <Grid item xs={4}></Grid>
-        <Grid container item spacing={2} xs={8}>
+        <Grid item md={4}></Grid>
+        <Grid container item spacing={2} md={8}>
           <SimpleCardList />
           <Map />
         </Grid>
-        <Grid container item spacing={2} xs={4}>
+        <Grid container item spacing={2} md={4}>
           <Summary />
         </Grid>
       </Grid>

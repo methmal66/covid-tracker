@@ -15,7 +15,7 @@ const countries = (state = init, action) => {
         deaths: dataItem.deaths,
         newDeaths: dataItem.todayDeaths,
       }));
-
+      console.log("countries are set");
       return countries;
 
     default:

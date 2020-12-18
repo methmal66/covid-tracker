@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { formatPoints, formatPercentage } from "../util";
-import numeral from "numeral";
 
 const LineGraph = () => {
   const [points, setPoints] = useState([]);
