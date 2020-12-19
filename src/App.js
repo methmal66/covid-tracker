@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { setCountries } from "./Actions/countries";
 import { setGlobal } from "./Actions/global";
 import SimpleCardList from "./Components/SimpleCardList";
-import LeafletMap from "./Components/LeafletMap";
+import Map from "./Components/Map";
 import Summary from "./Components/Summary";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -51,7 +51,7 @@ const App = () => {
       </Typography>
       <Grid container spacing={2} className={classes.root}>
         <SimpleCardList lg={3} xs={6} />
-        <LeafletMap lg={9} xs={12} />
+        <Map lg={9} xs={12} />
         <Summary lg={3} xs={12} />
       </Grid>
     </center>

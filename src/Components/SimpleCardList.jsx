@@ -13,13 +13,13 @@ const SimpleCardList = ({ lg, xs }) => {
     deaths,
     newDeaths,
   } = useSelector((state) => {
-    if (state.choosenCountry === "World Wide") {
-      return state.global;
+    const { choosenCountry, countries, global } = state;
+    if (choosenCountry === "World Wide") {
+      return global;
     }
-    const requiredCountry = state.countries.filter(
-      (eachCountry) => eachCountry.name === state.choosenCountry
+    return countries.filter(
+      (eachCountry) => eachCountry.name === choosenCountry
     )[0];
-    return requiredCountry;
   });
 
   return (
