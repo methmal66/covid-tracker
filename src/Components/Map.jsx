@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import GoogleMapReact from "google-map-react";
 import Paper from "@material-ui/core/Paper";
 import "leaflet/dist/leaflet.css";
 import Grid from "@material-ui/core/Grid";
-import Marker from "./Marker";
+import MarkerList from "./MarkerList";
+import GoogleMapReact from "google-map-react";
+import { MapContainer as LeafletMap, TileLayer } from "react-leaflet";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,15 +44,7 @@ const Map = ({ lg, xs }) => {
 
   return (
     <Grid item lg={lg} xs={xs}>
-      <Paper className={classes.root}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyB14xbMSEg46WaKyjJo1cufzAxRS36hFhQ" }}
-          defaultCenter={center}
-          defaultZoom={1}
-        >
-          <Marker lat={7} lng={81}></Marker>
-        </GoogleMapReact>
-      </Paper>
+      <MarkerList center={center} />
     </Grid>
   );
 };
