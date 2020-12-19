@@ -3,9 +3,19 @@ import { useSelector } from "react-redux";
 import { sortFunction } from "../util";
 import { makeStyles } from "@material-ui/core/styles";
 import GoogleMapReact from "google-map-react";
-import Marker from "./Marker";
+import clsx from "clsx";
+
+const useStyles = makeStyles((theme) => ({
+  marker: {
+    // width: "10px",
+    // height: "10px",
+    borderRadius: "50%",
+    backgroundColor: "rgba(255,0,0,0.3)",
+  },
+}));
 
 const MarkerList = ({ center }) => {
+  const classes = useStyles();
   const markersData = useSelector((state) => {
     const { option, countries } = state;
     const foundData = countries.map((eachCountry) => [
@@ -20,9 +30,19 @@ const MarkerList = ({ center }) => {
 
   const markerElements = markersData.map((data) => {
     const highest = markersData[0][1];
-    const maxRadius = 500;
-    let radius = (data[1] / highest) * maxRadius;
-    return <Marker radius={radius} lat={data[0]} lng={data[2]} />;
+    const maxDiameter = 500;
+    let diameter = (data[1] / highest) * maxDiameter;
+    console.log(diameter);
+    return (
+      <div
+        lat={data[0]}
+        lng={data[2]}
+        className={clsx(classes.marker, {
+          width: `${diameter}px`,
+          height: `${diameter}px`,
+        })}
+      />
+    );
   });
 
   return (
