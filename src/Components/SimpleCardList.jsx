@@ -2,8 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import SimpleCard from "./SimpleCard";
 import Grid from "@material-ui/core/Grid";
+import Header from "./Header";
 
-const SimpleCardList = () => {
+const SimpleCardList = ({ lg, xs }) => {
   const {
     cases,
     newCases,
@@ -22,15 +23,18 @@ const SimpleCardList = () => {
   });
 
   return (
-    <Grid container item spacing={2}>
-      <Grid item xs>
+    <Grid item container spacing={2}>
+      <Grid item lg={lg} xs={xs}>
         <SimpleCard title="Covid virus cases" _new={newCases} total={cases} />
       </Grid>
-      <Grid item xs>
+      <Grid item lg={lg} xs={xs}>
         <SimpleCard title="Recovered" _new={newRecovered} total={recovered} />
       </Grid>
-      <Grid item xs>
+      <Grid item lg={lg} xs={xs}>
         <SimpleCard title="Deaths" _new={newDeaths} total={deaths} />
+      </Grid>
+      <Grid item lg={lg} xs={xs}>
+        <Header />
       </Grid>
     </Grid>
   );

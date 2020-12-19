@@ -5,8 +5,8 @@ const countries = (state = init, action) => {
     case "SET_COUNTRIES":
       const countries = action.payload.map((dataItem) => ({
         name: dataItem.country,
-        lan: dataItem.countryInfo.lat,
-        lon: dataItem.countryInfo.long,
+        lat: dataItem.countryInfo.lat,
+        lng: dataItem.countryInfo.long,
         flag: dataItem.countryInfo.flag,
         cases: dataItem.cases,
         newCases: dataItem.todayCases,
@@ -15,7 +15,6 @@ const countries = (state = init, action) => {
         deaths: dataItem.deaths,
         newDeaths: dataItem.todayDeaths,
       }));
-      console.log("countries are set");
       return countries;
 
     default:

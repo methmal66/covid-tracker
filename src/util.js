@@ -1,9 +1,15 @@
-import numeral from "numeral";
+export const formatNumber = (num = 0) => {
+  const stringNumber = num.toString();
+  const formattedNumber = stringNumber.replace(
+    /(\d)(?=(\d{3})+(?!\d))/g,
+    "$1,"
+  );
+  return formattedNumber;
+};
 
-export const formatNewNumber = (num) => numeral(num).format("+0,0");
-export const formatNumber = (num) => numeral(num).format("0,0");
-export const formatPercentage = (num) => numeral(num).format("0a").concat("%");
-export const sortFunction = (a, b) => a[1] - b[1];
+export const sortFunction = (a, b) => {
+  return a[1] - b[1];
+};
 
 export const formatPoints = (obj) => {
   let points = [];

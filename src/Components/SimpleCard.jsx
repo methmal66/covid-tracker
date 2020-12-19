@@ -1,20 +1,24 @@
 import React from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import { formatNumber, formatNewNumber } from "../util";
+import { makeStyles } from "@material-ui/core/styles";
+import { formatNumber } from "../util";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: "15px",
+  },
+}));
 
 const SimpleCard = ({ title, _new, total }) => {
+  const classes = useStyles();
+
   return (
-    <div>
-      <Card>
-        <CardContent>
-          <Typography>{title}</Typography>
-          <Typography variant="h5">{formatNewNumber(_new)} today</Typography>
-          <Typography>{formatNumber(total)} total</Typography>
-        </CardContent>
-      </Card>
-    </div>
+    <Paper className={classes.root}>
+      <Typography>{title}</Typography>
+      <Typography variant="h5">+{formatNumber(_new)} today</Typography>
+      <Typography>{formatNumber(total)} total</Typography>
+    </Paper>
   );
 };
 

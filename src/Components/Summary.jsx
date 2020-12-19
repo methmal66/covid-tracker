@@ -1,9 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import LineGraph from "./LineGraph";
 import { sortFunction, formatNumber } from "../util.js";
@@ -13,7 +11,8 @@ const useStyles = makeStyles((theme) => ({
     height: "638px",
   },
   table: {
-    height: "380px",
+    margin: "5px",
+    height: "440px",
     overflow: "scroll",
   },
   row: {
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Summary = () => {
+const Summary = ({ lg, xs }) => {
   const classes = useStyles();
   const data = useSelector((state) => {
     const foundData = state.countries.map((eachCountry) => [
@@ -47,19 +46,16 @@ const Summary = () => {
   };
 
   return (
-    <Grid item xs>
-      <Card className={classes.root}>
-        <Typography>
-          <h3>Live cases by country</h3>
-        </Typography>
-        <CardContent className={classes.table}>{table()}</CardContent>
-        <Typography>
-          <span>daily growth</span>
-        </Typography>
-        <CardContent>
-          <LineGraph />
-        </CardContent>
-      </Card>
+    <Grid item lg={lg} xs={xs}>
+      <Paper className={classes.root}>
+        <h3>Live cases by country</h3>
+
+        <div className={classes.table}>{table()}</div>
+
+        <span>daily growth</span>
+
+        <LineGraph />
+      </Paper>
     </Grid>
   );
 };
