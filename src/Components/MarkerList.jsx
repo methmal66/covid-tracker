@@ -5,17 +5,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import GoogleMapReact from "google-map-react";
 import clsx from "clsx";
 
-const useStyles = makeStyles((theme) => ({
+let styles = {
   marker: {
-    // width: "10px",
-    // height: "10px",
     borderRadius: "50%",
     backgroundColor: "rgba(255,0,0,0.3)",
   },
-}));
+};
+let useStyles = makeStyles((theme) => styles);
 
 const MarkerList = ({ center }) => {
-  const classes = useStyles();
   const markersData = useSelector((state) => {
     const { option, countries } = state;
     const foundData = countries.map((eachCountry) => [
@@ -28,22 +26,25 @@ const MarkerList = ({ center }) => {
     return foundData;
   });
 
-  const markerElements = markersData.map((data) => {
+  markersData.forEach((data) => {
     const highest = markersData[0][1];
-    const maxDiameter = 500;
-    let diameter = (data[1] / highest) * maxDiameter;
-    console.log(diameter);
-    return (
-      <div
-        lat={data[0]}
-        lng={data[2]}
-        className={clsx(classes.marker, {
-          width: `${diameter}px`,
-          height: `${diameter}px`,
-        })}
-      />
-    );
+    const maxRadius = 500;
+    let radius = (data[1] / highest) * maxRadius;
+    data.push(radius);
+    styles[radius] = {
+      width: radius,
+      height: radius,
+    };
   });
+
+  const classes = useStyles();
+  const markerElements = markersData.map((data) => (
+    <div
+      className={clsx(classes.marker, classes[data[3]])}
+      lat={data[0]}
+      lng={data[2]}
+    />
+  ));
 
   return (
     <GoogleMapReact
