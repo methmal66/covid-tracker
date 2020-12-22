@@ -1,4 +1,4 @@
-const init = "cases";
+const init = "deaths";
 
 const option = (state = init, action) => {
   switch (action.type) {

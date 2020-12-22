@@ -4,8 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import LineGraph from "./LineGraph";
-import { sortFunction, formatNumber } from "../util.js";
+import { sortBy, formatNumber } from "../util.js";
 
+let option;
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "638px",
@@ -26,20 +27,18 @@ const useStyles = makeStyles((theme) => ({
 
 const Summary = ({ lg, xs }) => {
   const classes = useStyles();
-  const data = useSelector((state) => {
-    const foundData = state.countries.map((eachCountry) => [
-      eachCountry.name,
-      eachCountry.cases,
-    ]);
-    foundData.sort(sortFunction).reverse();
-    return foundData;
+  const sortedCountries = useSelector((state) => {
+    const { countries } = state;
+    option = state.option;
+    countries.sort(sortBy(option)).reverse();
+    return countries;
   });
 
   const table = () => {
-    const rowElements = data.map((eachData) => (
+    const rowElements = sortedCountries.map((country) => (
       <tr className={classes.row}>
-        <td>{eachData[0]}</td>
-        <td>{formatNumber(eachData[1])}</td>
+        <td>{country.name}</td>
+        <td>{formatNumber(country[option])}</td>
       </tr>
     ));
     return rowElements;
@@ -49,11 +48,8 @@ const Summary = ({ lg, xs }) => {
     <Grid item lg={lg} xs={xs}>
       <Paper className={classes.root}>
         <h3>Live cases by country</h3>
-
         <div className={classes.table}>{table()}</div>
-
         <span>daily growth</span>
-
         <LineGraph />
       </Paper>
     </Grid>
