@@ -7,9 +7,11 @@ export const formatNumber = (num = 0) => {
   return formattedNumber;
 };
 
+
 export const sortFunction = (a, b) => {
   return a[1] - b[1];
 };
+
 
 export const formatPoints = (obj) => {
   let points = [];
@@ -27,6 +29,12 @@ export const formatPoints = (obj) => {
     };
     points.push(newPoint);
   }
-
   return points;
 };
+
+
+export const findRelativeDiameter = (high, present) =>{
+  const MAX = 500;
+  const diameter = (present / high) * MAX;
+  return diameter
+}

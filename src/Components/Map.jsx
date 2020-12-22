@@ -6,7 +6,7 @@ import "leaflet/dist/leaflet.css";
 import Grid from "@material-ui/core/Grid";
 import MarkerList from "./MarkerList";
 import GoogleMapReact from "google-map-react";
-import { MapContainer as LeafletMap, TileLayer } from "react-leaflet";
+//import { MapContainer as LeafletMap, TileLayer } from "react-leaflet";
 
 const useStyles = makeStyles((theme) => ({
   root: {
