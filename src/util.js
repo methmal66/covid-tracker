@@ -1,5 +1,4 @@
 export const formatNumber = (num = 0) => {
-  console.log(num);
   const stringNumber = num.toString();
   const formattedNumber = stringNumber.replace(
     /(\d)(?=(\d{3})+(?!\d))/g,
@@ -8,18 +7,11 @@ export const formatNumber = (num = 0) => {
   return formattedNumber;
 };
 
-export const sortBy = (option) => {
-  const SORT_FUNCTIONS = {
-    cases: (a, b) => a.cases - b.cases,
-    recoverd: (a, b) => a.recovered - b.recovered,
-    deaths: (a, b) => a.deaths - b.deaths,
-  };
-  return SORT_FUNCTIONS[option];
+
+export const sortFunction = (a, b) => {
+  return a[1] - b[1];
 };
 
-export const sortByName = (a, b) => {
-  return a.name - b.name;
-};
 
 export const formatPoints = (obj) => {
   let points = [];
@@ -40,8 +32,9 @@ export const formatPoints = (obj) => {
   return points;
 };
 
-export const findRelativeDiameter = (high, present) => {
+
+export const findRelativeDiameter = (high, present) =>{
   const MAX = 500;
   const diameter = (present / high) * MAX;
-  return diameter;
-};
+  return diameter
+}
