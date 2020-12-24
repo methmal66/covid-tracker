@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
-import {
-  formatPoints,
-  formatNumber,
-  formatPercentage,
-  getColor,
-} from "../util";
+import { formatPoints, formatPercentage, getColor } from "../util";
 
 const LineGraph = () => {
   const [points, setPoints] = useState([]);

@@ -23,11 +23,11 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("http://www.disease.sh/v3/covid-19/countries")
+    fetch("https://www.disease.sh/v3/covid-19/countries")
       .then((response) => response.json())
       .then((data) => dispatch(setCountries(data)));
 
-    fetch("http://www.disease.sh/v3/covid-19/all")
+    fetch("https://www.disease.sh/v3/covid-19/all")
       .then((response) => response.json())
       .then((data) => dispatch(setGlobal(data)));
     //eslint-disable-next-line

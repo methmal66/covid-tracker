@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import "leaflet/dist/leaflet.css";
 import Grid from "@material-ui/core/Grid";
 import Marker from "./Marker";

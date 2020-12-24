@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { formatNumber, formatNewNumber, getColor } from "../util";
+import { formatNumber, formatNewNumber } from "../util";
 import { setOption } from "../Actions/option";
 
 const useStyles = makeStyles(() => ({
