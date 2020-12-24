@@ -13,6 +13,7 @@ const Header = ({ lg }) => {
     const countryNames = useSelector((state) => {
       const { countries } = state;
       const allNames = countries.map((eachCountry) => eachCountry.name);
+      allNames.sort();
       allNames.unshift("World Wide", "Sri Lanka");
       return allNames;
     });

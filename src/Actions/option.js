@@ -1,6 +1,1 @@
-export const setOption = (option) => {
-  return {
-    type: "SET_OPTION",
-    payload: option,
-  };
-};
+export const setOption = (option) => ({ type: "SET_OPTION", payload: option });

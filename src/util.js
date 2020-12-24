@@ -1,14 +1,25 @@
+import numeral from "numeral";
+
 export const formatNumber = (num = 0) => {
-  const stringNumber = num.toString();
-  const formattedNumber = stringNumber.replace(
-    /(\d)(?=(\d{3})+(?!\d))/g,
-    "$1,"
-  );
+  const formattedNumber = numeral(num).format("0,0");
   return formattedNumber;
 };
 
+export const formatNewNumber = (num) => {
+  const formatedNumber = formatNumber(num);
+  const formatedNewNumber = "+".concat(formatedNumber);
+  return formatedNewNumber;
+};
+
+export const formatPercentage = (num) => {
+  const formatedNumber = formatNumber(num);
+  const formatedPercentage = formatedNumber.concat("%");
+  return formatedPercentage;
+};
+
 export const sortBy = (option) => {
-  return (a, b) => a[option] - b[option];
+  const func = (a, b) => a[option] - b[option];
+  return func;
 };
 
 export const getColor = (option) => {

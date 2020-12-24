@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
-import { formatPoints, formatNumber, getColor } from "../util";
+import {
+  formatPoints,
+  formatNumber,
+  formatPercentage,
+  getColor,
+} from "../util";
 
 const LineGraph = () => {
   const [points, setPoints] = useState([]);
@@ -36,7 +41,7 @@ const LineGraph = () => {
       mode: "index",
       intersect: false,
       callbacks: {
-        label: (tooltipItem, data) => formatNumber(tooltipItem.value),
+        label: (tooltipItem, data) => formatPercentage(tooltipItem.value),
       },
     },
     scales: {
@@ -56,7 +61,7 @@ const LineGraph = () => {
           },
           ticks: {
             // Include a dollar sign in the ticks
-            callback: (value, index, values) => formatNumber(value).concat("%"),
+            callback: (value, index, values) => formatPercentage(value),
           },
         },
       ],

@@ -1,6 +1,4 @@
-export const setGlobal = (data) => {
-  return {
-    type: "SET_GLOBAL",
-    payload: data,
-  };
-};
+export const setGlobal = (data) => ({
+  type: "SET_GLOBAL",
+  payload: data,
+});
