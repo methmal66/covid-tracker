@@ -7,11 +7,22 @@ export const formatNumber = (num = 0) => {
   return formattedNumber;
 };
 
+export const sortBy = (option) => {
+  return (a, b) => a[option] - b[option];
+};
+
+export const getColor = (option) => {
+  const OPTIONS = {
+    cases: "rgba(255,0,0,0.3)",
+    deaths: "rgba(0,0,255,0.3)",
+    recovered: "rgba(0,255,0,0.3)",
+  };
+  return OPTIONS[option];
+};
 
 export const sortFunction = (a, b) => {
   return a[1] - b[1];
 };
-
 
 export const formatPoints = (obj) => {
   let points = [];
@@ -32,9 +43,8 @@ export const formatPoints = (obj) => {
   return points;
 };
 
-
-export const findRelativeDiameter = (high, present) =>{
+export const findRelativeDiameter = (high, present) => {
   const MAX = 500;
   const diameter = (present / high) * MAX;
-  return diameter
-}
+  return diameter;
+};

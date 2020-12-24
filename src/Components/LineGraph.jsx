@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Line } from "react-chartjs-2";
-import { formatPoints } from "../util";
-import numeral from "numeral";
+import { formatPoints, formatNumber, getColor } from "../util";
 
 const LineGraph = () => {
   const [points, setPoints] = useState([]);
+  const { option } = useSelector((state) => state);
 
   const data = {
     datasets: [
       {
         data: points,
-        backgroundColor: "rgba(204, 16, 52, 0.5)",
-        borderColor: "#CC1034",
+        backgroundColor: getColor(option),
         pointBackgroundColor: "#fff",
         pointBorderWidth: 0,
         pointRadius: 0,
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: "rgba(204, 16, 52, 0.5)",
+        pointHoverBackgroundColor: getColor(option),
         pointHoverBorderWidth: 0,
       },
     ],
@@ -36,8 +36,7 @@ const LineGraph = () => {
       mode: "index",
       intersect: false,
       callbacks: {
-        label: (tooltipItem, data) =>
-          numeral(tooltipItem.value).format("0a").concat("%"),
+        label: (tooltipItem, data) => formatNumber(tooltipItem.value),
       },
     },
     scales: {
@@ -57,8 +56,7 @@ const LineGraph = () => {
           },
           ticks: {
             // Include a dollar sign in the ticks
-            callback: (value, index, values) =>
-              numeral(value).format("0a").concat("%"),
+            callback: (value, index, values) => formatNumber(value).concat("%"),
           },
         },
       ],
@@ -69,10 +67,10 @@ const LineGraph = () => {
     fetch("https://www.disease.sh/v3/covid-19/historical/all?lastdays=100")
       .then((response) => response.json())
       .then((data) => {
-        const _cases = data.cases;
-        setPoints(formatPoints(_cases));
+        const dataToDisplay = data[option];
+        setPoints(formatPoints(dataToDisplay));
       });
-  }, []);
+  }, [option]);
 
   return (
     <div>

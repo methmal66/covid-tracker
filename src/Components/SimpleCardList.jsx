@@ -25,13 +25,28 @@ const SimpleCardList = ({ lg, xs }) => {
   return (
     <Grid item container spacing={2}>
       <Grid item lg={lg} xs={xs}>
-        <SimpleCard title="Covid virus cases" _new={newCases} total={cases} />
+        <SimpleCard
+          thisOption="cases"
+          title="Covid virus cases"
+          _new={newCases}
+          total={cases}
+        />
       </Grid>
       <Grid item lg={lg} xs={xs}>
-        <SimpleCard title="Recovered" _new={newRecovered} total={recovered} />
+        <SimpleCard
+          title="Recovered"
+          thisOption="recovered"
+          _new={newRecovered}
+          total={recovered}
+        />
       </Grid>
       <Grid item lg={lg} xs={xs}>
-        <SimpleCard title="Deaths" _new={newDeaths} total={deaths} />
+        <SimpleCard
+          title="Deaths"
+          thisOption="deaths"
+          _new={newDeaths}
+          total={deaths}
+        />
       </Grid>
       <Grid item lg={lg} xs={xs}>
         <Header />
